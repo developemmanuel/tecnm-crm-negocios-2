@@ -1,0 +1,10 @@
+.simple-input {
+    @apply
+    rounded bg-gray-100 w-full p-2 hover:bg-gray-200 focus:bg-gray-200
+    outline outline-2 outline-transparent focus:outline-[#9F2241] ring-2 ring-transparent ring-offset-2 focus:ring-[#F2D2DA] transition-all duration-100 ease-in-out
+}
+
+.submit-button-icon {
+    @apply
+    mt-8 bg-[#9F2241] text-white flex flex-row justify-between w-full p-3 hover:bg-[#691C32] transition-all duration-100 ease-in-out
+}
