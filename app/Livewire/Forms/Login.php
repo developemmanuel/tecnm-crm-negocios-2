@@ -2,18 +2,25 @@
 
 namespace App\Livewire\Forms;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Login extends Component
 {
-    public $user, $password;
+    public $email, $password;
 
-    public function save(){
-        $this->validate([
-            'user' => ['required'],
-            'password' => ['required']
-        ], ['user.required' => 'Ingresa un usuario', 'password' => 'Ingresa una contraseña']);
+    public function login(){
+        $credentials = $this->validate(
+            [ 'email' => ['required', 'email'], 'password' => ['required'] ],
+            [ 'email.required' => 'Ingresa un correo', 'password' => 'Ingresa una contraseña', 'email.email' => 'Ingresa un correo válido' ]
+        );
+        if (Auth::attempt($credentials)){
+            return redirect()->route('dashboard');
+        } else {
+            session()->flash('error', 'Credenciales incorrectas.');
+        }
     }
+
     public function render()
     {
         return view('livewire.forms.login');

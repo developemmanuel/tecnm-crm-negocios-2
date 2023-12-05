@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function (){
     return view('posts.login');
 })->name('login');
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function (){
+    Route::get('/', function (){
+        return view('app.home');
+    })->name('dashboard');
+
+    Route::get('reportes', function (){
+        return view('app.reportes');
+    })->name('reportes');
+
+    Route::get('clientes', function (){
+        return view('app.clientes');
+    })->name('clientes');
+});
